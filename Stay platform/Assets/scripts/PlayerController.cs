@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public bool hasPowerUp = false;
 
-    private float powerupstrength = 15f;
+    public float powerupstrength = 15f;
     public GameObject selectionRings;
     void Start()
     {
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("powerup"))
+        if (other.CompareTag("Powerup"))
         {
             hasPowerUp = true;
             Destroy(other.gameObject);
