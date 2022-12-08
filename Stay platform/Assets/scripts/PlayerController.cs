@@ -6,12 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
     private GameObject focalPoint;
-
     private Rigidbody playerRb;
-
     public bool hasPowerUp = false;
 
+
     public float powerupstrength = 15f;
+    public float powerOfFast = 0.5f;
+    public float powerOfStrengt = 2f;
+
+
+
     public GameObject selectionRings;
     void Start()
     {
@@ -45,6 +49,20 @@ public class PlayerController : MonoBehaviour
             Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
             enemyRigidb.AddForce(awayFromPlayer * powerupstrength, ForceMode.Impulse);
         }
+        if (collision.gameObject.CompareTag("StrongEnemy"))
+        {
+            Rigidbody enemyRigidbody =gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromPlayer = (transform.position - collision.gameObject.transform.position);
+            enemyRigidbody.AddForce(awayFromPlayer * powerOfStrengt, ForceMode.Impulse);
+        }
+        if (collision.gameObject.CompareTag("FastEnemy"))
+        {
+            Rigidbody enemyRigidbody = gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromPlayer = (transform.position - collision.gameObject.transform.position);
+            enemyRigidbody.AddForce(awayFromPlayer * powerOfFast, ForceMode.Impulse);
+        }
+
+
     }
     IEnumerator PowerupCcountdownRoutine()
     {

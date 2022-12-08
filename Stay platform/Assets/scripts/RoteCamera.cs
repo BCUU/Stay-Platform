@@ -5,11 +5,6 @@ using UnityEngine;
 public class RoteCamera : MonoBehaviour
 {
     public float RotationSpeed;
-    void Start()
-    {
-
-    }
-
 
     void Update()
     {
