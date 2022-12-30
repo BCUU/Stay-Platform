@@ -5,18 +5,27 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefab;
+    
     public GameObject powerupPrefab;
     private float spawnRange = 9f;
     public int enemyCount;
     public int wawenumber = 1;
     public int probablity ;
+
+    int isFnished;
     void Start()
     {
+        PlayerPrefs.SetInt(nameof(isFnished),0);
         SpawnEnemyWawe(1);
     }
     private void Update()
     {
-        enemyCounter();
+        if (PlayerPrefs.GetInt(nameof(isFnished)) == 0)
+        {
+            enemyCounter();
+        }
+       
+       
     }
     void SpawnEnemyWawe(int enemiesTpWpawn)
     {

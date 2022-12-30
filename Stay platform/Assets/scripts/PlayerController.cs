@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
 
 
     public GameObject selectionRings;
+    public GameObject bullet;
+    public GameObject[] enemy;
+    public GameObject[] st_enemy;
+    public GameObject[] fs_enemy;
+    int enemyCount;
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
@@ -30,7 +35,57 @@ public class PlayerController : MonoBehaviour
 
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         selectionRings.transform.position = transform.position + new Vector3(0, -0.5f, 0);
+        enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        st_enemy = GameObject.FindGameObjectsWithTag("StrongEnemy");
+        //fs_enemy = GameObject.FindGameObjectsWithTag("FastEnemy");
+        
+        enemyCount = FindObjectsOfType<EnemyController>().Length;
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+            
+        //    for (int i = 0; i < enemyCount; i++)
+        //    {
+        //        if (enemy[i] != null)
+        //        {
+        //            Vector3 awayFromPlayer = enemy[i].transform.position-transform.position;
+
+        //            Vector3 bulletVector = awayFromPlayer.normalized;
+        //            Quaternion bulletRotation = Quaternion.LookRotation(bulletVector, Vector3.up);
+
+        //            GameObject bullet = Instantiate(bullet, transform.position + bulletVector * bulletOffsetRadius, bulletRotation);
+        //            bullet.GetComponent<MoveBullet>().enemy = enemy[i];
+
+
+        //            GameObject new_bullet = Instantiate(bullet,transform.position, Quaternion.identity);
+        //            new_bullet.GetComponent<Rigidbody>().velocity = (enemy[i].transform.position - transform.position);
+        //        }
+
+        //        //    Rigidbody bulletrb = bullet.gameObject.GetComponent<Rigidbody>();
+        //        //    Vector3 awayFromPlayer = enemy[i].transform.position;
+        //        //    bulletrb.AddForce(awayFromPlayer * powerupstrength, ForceMode.Impulse);
+        //        //}
+        //        //if (st_enemy[i]!=null)
+        //        //{
+        //        //    Instantiate(bullet, transform.position, transform.rotation);
+        //        //    Rigidbody bulletrb = bullet.gameObject.GetComponent<Rigidbody>();
+        //        //    Vector3 awayFromPlayer = st_enemy[i].transform.position;
+        //        //    bulletrb.AddForce(awayFromPlayer * powerupstrength, ForceMode.Impulse);
+        //        //}
+        //        /*if (fs_enemy[i]!=null)
+        //        {
+        //            Instantiate(bullet, transform.position, transform.rotation);
+        //            Rigidbody bulletrb = bullet.gameObject.GetComponent<Rigidbody>();
+        //            Vector3 awayFromPlayer = fs_enemy[i].transform.position;
+        //            bulletrb.AddForce(awayFromPlayer * powerupstrength, ForceMode.Impulse);
+        //        }*/
+                
+                
+        //    }
+            
+        //}
     }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Powerup"))
